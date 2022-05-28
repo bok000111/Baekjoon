@@ -1,1 +1,1 @@
-# BOJ 정답 코드
+# BOJ soluition
