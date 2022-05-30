@@ -1,21 +1,24 @@
-#include <cstdio>
+#include <iostream>
 #include <vector>
 #include <queue>
 #include <stack>
 #include <algorithm>
 
 int main() {
+    std::ios_base::sync_with_stdio(false);
+    std::cin.tie(0);
+    std::cout.tie(0);
 
     std::vector<short> graph[1001];
     bool visit[1001];
     short n, m, r, tmp;
 
-    scanf("%hd %hd %hd", &n, &m, &r);
+    std::cin >> n >> m >> r;
 
     short a, b;
 
     for(short i = 0; i < m; i++) {
-        scanf("%hd %hd", &a, &b);
+        std::cin >> a >> b;
         graph[a].push_back(b);
         graph[b].push_back(a);
     }
@@ -33,7 +36,7 @@ int main() {
         dfs.pop();
         if(!visit[v]) {
             visit[v] = 1;
-            printf("%hd ", v);
+            std::cout << v << ' ';
             tmp = graph[v].size();
             for(short i = tmp-1; i >= 0; i--) {
                 if(!visit[graph[v][i]]) {
@@ -46,7 +49,7 @@ int main() {
     for(short i = 1; i <= n; i++) {
         visit[i] = 0;
     }
-    printf("\n");
+    std::cout << '\n';
 
     depth = 1, v = r;
     std::queue<short> bfs;
@@ -58,7 +61,7 @@ int main() {
         bfs.pop();
         if(!visit[v]) {
             visit[v] = 1;
-            printf("%hd ", v);
+            std::cout << v << ' ';
             tmp = graph[v].size();
             for(int i = 0; i < tmp; i++) {
                 if(!visit[graph[v][i]]) {
