@@ -1,6 +1,6 @@
 #include <iostream>
 #include <vector>
-#include <stack>
+#include <queue>
 #include <algorithm>
 
 int main() {
@@ -31,20 +31,20 @@ int main() {
         std::sort(graph[i].begin(), graph[i].end());
     }
 
-    int depth = 1, v = r;
-    std::stack<int> dfs;
-    dfs.push(v);
+    int cnt = 1, v = r;
+    std::queue<int> bfs;
+    bfs.push(v);
 
-    while(!dfs.empty()) {
-        v = dfs.top();
-        dfs.pop();
+    while(!bfs.empty()) {
+        v = bfs.front();
+        bfs.pop();
         if(!visit[v]) {
             visit[v] = 1;
-            srt[v] = depth++;
+            srt[v] = cnt++;
             int tmp = graph[v].size();
-            for(int i = 0; i < tmp; i++) {
+            for(int i = tmp-1; i >= 0; i--) {
                 if(!visit[graph[v][i]]) {
-                    dfs.push(graph[v][i]);
+                    bfs.push(graph[v][i]);
                 }
             }
         }
@@ -56,6 +56,5 @@ int main() {
 
     delete []visit;
     delete []srt;
-
     return 0;
 }

@@ -53,5 +53,9 @@ int main() {
     for(int i = 1; i <= n; i++) {
         std::cout << srt[i] << '\n';
     }
+
+    delete []visit;
+    delete []srt;
+    
     return 0;
 }
